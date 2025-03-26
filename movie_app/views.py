@@ -189,17 +189,6 @@ def add_review(request,movie_id):
         Review.objects.create(user=request.user,text=text,rating=rating,movie=movie)
     return redirect('movie_detail', movie_id=movie_id)
 
-
-# def search_movie(request,movie_id):
-#     movie=get_object_or_404(Movie,id=movie_id,user=request.user)
-#     category=movie.category
-
-#     related_movies=Movie.objects.filter(category=category).exclude(id=movie.id).order_by('-created_at')[:10]
-
-#     return render(request, 'movie_list.html', {'movie': movie, 'related_movies': related_movies})
-
-
-
 def search_movie(request):
     query = request.GET.get('q', '').strip() 
     movies = Movie.objects.all()
